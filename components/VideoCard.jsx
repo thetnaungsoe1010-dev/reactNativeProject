@@ -2,6 +2,9 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import icons from "../constants/icons";
 import { Video, ResizeMode } from "expo-av";
+import { saveVideo } from "../lib/appwrite";
+import { useGlobalContext } from "../context/GlobalProvider";
+
 
 const VideoCard = ({
   video: {
@@ -15,9 +18,10 @@ const VideoCard = ({
 }) => {
   const [play, setPlay] = useState(false);
   const [save, setSave] = useState(saveIcon);
+  const { user } = useGlobalContext();
 
   const handleSave = () => {
-    
+    saveVideo(video, user.$id);
     setSave(!save);
   };
 

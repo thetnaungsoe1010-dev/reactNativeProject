@@ -80,7 +80,7 @@ const Home = () => {
               </View>
             </View>
 
-            <SearchInput />
+            <SearchInput placeholder="Search videos" />
 
             <View
               style={{

@@ -13,16 +13,10 @@ import useAppWrite from "../../lib/useAppWrite";
 import { useLocalSearchParams } from "expo-router";
 
 const Bookmark = () => {
-  const { query } = useLocalSearchParams();
-  const { data: posts, refetch } = useAppWrite(() => searchPosts(query));
 
-  const [refreshing, setRefreshing] = useState(false);
-
-  console.log("query", query , posts);
-
-  useEffect(() => {
-    refetch();
-  }, [query]);
+  // useEffect(() => {
+  //   refetch();
+  // }, []);
   // console.log("posts", posts);
 
   // one flatlist
@@ -37,7 +31,7 @@ const Bookmark = () => {
     >
       <StatusBar backgroundColor="#161622" style="light" />
       <FlatList
-        data={posts}
+        data={""}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
@@ -50,11 +44,8 @@ const Bookmark = () => {
             <Text style={{ color: "#fff", fontSize: 20, fontFamily: "Poppins-Bold", marginTop: 12 }}>
               Saved Videos
             </Text> 
-            <Text style={{ color: "#fff", fontSize: 16, fontFamily: "Poppins-Regular" }}>
-              {query}
-            </Text>
             <View style={{  marginBottom: 12 }}>
-              <SearchInput initialQuery={query} placeholder="Search your saved videos" />
+              <SearchInput placeholder="Search your saved videos" />
             </View>
           </View>
         )}
